@@ -1,24 +1,15 @@
 import React, { useEffect } from 'react'
-import { Main } from './components/MainlLayout/MainSection/Main'
-import { Job } from './assets/type';
-import job_Service from './assets/movie-service';
-
+import { Main } from './components/MainlLayout/Main';
+import { Register } from './components/MainlLayout/Register';
+import { Routes, Route, Link } from "react-router-dom";
 const App: React.FC = () => {
-  const [job, setJob] = React.useState<Job[]>([]);
-  const [value, setValue] = React.useState<number>(0);
-  useEffect(() => {
-    job_Service().then(function (response) {
-      setJob(response);
-    })
-  }, []);
-
-  const handleChange = (event: number) => {
-    setValue(event);
-  }
 
   return (
     <div className='container'>
-      <Main job={job} handleChange={handleChange} value={value}></Main>
+      <Routes>
+        <Route path="/" element={<Main />} />
+        <Route path="/register" element={<Register />} />
+      </Routes>
     </div>
   )
 }
